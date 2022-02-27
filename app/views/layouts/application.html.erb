@@ -12,6 +12,18 @@
 
   <body>
     <div class="container">
+      <% if logged_in? %>
+        <%= link_to "プロフィール", user_path(current_user) %>
+      <% elsif !current_page?(login_path) && !current_page?(signup_path) %>
+        《 <%= link_to "ログイン", login_path %> 》
+        <span><=========></span>
+        《 <%= link_to "登録する", signup_path %> 》
+      <% elsif current_page?(signup_path) %>
+        《<%= link_to "登録する", signup_path %>》
+      <% else current_page?(login_path) %>
+        《 <%= link_to "ログイン", login_path %> 》
+      <% end %>
+      
       <%= render "layouts/flash_messages" %>
       <%= yield %>
     </div>
