@@ -11,17 +11,25 @@
   </head>
 
   <body>
+    <div>
+      <% if current_page?(login_path) || current_page?(signup_path) %>
+        <h1>タスクリスト</h1>
+      <% end %>
+    </div>
+    
     <div class="container">
       <% if logged_in? %>
-        <%= link_to "プロフィール", user_path(current_user) %>
-      <% elsif !current_page?(login_path) && !current_page?(signup_path) %>
-        《 <%= link_to "ログイン", login_path %> 》
-        <span><=========></span>
-        《 <%= link_to "登録する", signup_path %> 》
-      <% elsif current_page?(signup_path) %>
-        《<%= link_to "ログイン", signup_path %>》
-      <% else current_page?(login_path) %>
-        《 <%= link_to "登録する", login_path %> 》
+        <% if !current_page?(user_path(current_user)) %>
+          <%= link_to "プロフィール", user_path(current_user) %>
+        <% elsif !current_page?(login_path) && !current_page?(signup_path) %>
+          《 <%= link_to "ログイン", login_path %> 》
+          <span><=========></span>
+          《 <%= link_to "登録する", signup_path %> 》
+        <% elsif current_page?(signup_path) %>
+          《<%= link_to "ログイン", signup_path %>》
+        <% else current_page?(login_path) %>
+          《 <%= link_to "登録する", login_path %> 》
+        <% end %>
       <% end %>
       
       <%= render "layouts/flash_messages" %>
