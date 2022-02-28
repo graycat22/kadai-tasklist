@@ -1,10 +1,9 @@
-<%= form_with(model: task) do |f| %>
-  
-  <%= f.label :status, "ステータス" %>
-  <%= f.text_field :status %>
-  
-  <%= f.label :content, "タスク" %>
-  <%= f.text_field :content %>
-  
+<%= form_with model: task do |f| %>
+
+  <%#= f.label :content, "" %>
+  <!--br-->
+  <%= f.text_area :content, value: task.content %>
+  <br>
   <%= f.submit "追加" %>
+  
 <% end %>

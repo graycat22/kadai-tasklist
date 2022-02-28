@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pagy, @tasks = pagy(@user.tasks.order(id: :desc))
+    counts(@user)
   end
 
   def new
@@ -18,7 +20,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:notice] = "ユーザ登録完了！"
-      redirect_to @user
+      redirect_to root_url
     else
       flash.now[:notice] = "ユーザ登録できませんでした"
       render :new
