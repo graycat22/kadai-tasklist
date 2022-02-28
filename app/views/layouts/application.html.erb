@@ -19,8 +19,7 @@
     
     <div class="container">
       <% if logged_in? %>
-        <% if !current_page?(user_path(current_user)) && current_page?(login_path) && current_page?(signup_path) %>
-          <%= link_to "プロフィール", user_path(current_user) %>
+        <% if !current_page?(user_path(current_user)) %>
         <% elsif !current_page?(login_path) && !current_page?(signup_path) %>
           《 <%= link_to "ログイン", login_path %> 》
           <span><=========></span>
